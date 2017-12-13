@@ -18,7 +18,7 @@ def main(which_days):
             session_token = os.environ.get("AOC_SESSION_TOKEN")
             if session_token is None:
                 raise ValueError("Must set AOC_SESSION_TOKEN environment variable!")
-            url = 'https://adventofcode.com/2016/day/{0}/input'.format(day)
+            url = 'https://adventofcode.com/AOC2016/day/{0}/input'.format(day)
             opener = build_opener()
             opener.addheaders.append(('Cookie', 'session={0}'.format(session_token)))
             response = opener.open(url)
@@ -34,7 +34,7 @@ def main(which_days):
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser("Advent of Code 2016 - hbldh")
+    parser = argparse.ArgumentParser("Advent of Code AOC2016 - hbldh")
     parser.add_argument('day', nargs='*', default=None, help="Run only specific day's problem")
     parser.add_argument('--token', type=str, default=None, help="AoC session token. Needed to download data automatically.")
     args = parser.parse_args()
