@@ -1,4 +1,5 @@
-from itertools import product
+from itertools import product, groupby
+from operator import itemgetter
 from collections import deque, Counter, defaultdict
 
 from AOC2017 import ensure_data
@@ -6,6 +7,7 @@ from AOC2017 import ensure_data
 ensure_data(14)
 with open('input_14.txt', 'r') as f:
     data = f.read().strip()
+
 
 def knot_hash(s, size=256, rounds=64):
     skip_size = 0
@@ -31,19 +33,12 @@ def knot_hash(s, size=256, rounds=64):
 
 
 def build_matrix(indata):
-    rows = ["".join([bin(int(x, 16))[2:].zfill(4) for x in
-                     knot_hash(indata + "-" + str(k))]) for k in range(128)]
+    hashes = [knot_hash(indata + "-" + str(k)) for k in range(128)]
+    rows = ["".join([bin(int(y, 16))[2:].zfill(4) for y in x]) for x in hashes]
     return "\n".join(rows)
 
 
-def calculate_used_squares(indata):
-    c = Counter(build_matrix(indata))
-    return c['1']
-
-
-def calculate_n_regions(indata):
-    matrix = [[bool(int(x)) for x in row] for row in
-              build_matrix(indata).splitlines()]
+def connected_components(matrix):
     height, width = len(matrix), len(matrix[0])
 
     labels = {}
@@ -71,29 +66,37 @@ def calculate_n_regions(indata):
         for equivalent_label in label_equivalences[label]:
             label_equivalences[label] = label_equivalences[label].union(
                 label_equivalences[equivalent_label])
-            label_equivalences[equivalent_label] = label_equivalences[equivalent_label].union(
+            label_equivalences[equivalent_label] = label_equivalences[
+                equivalent_label].union(
                 label_equivalences[label])
         label_equivalences[label].add(label)
 
     for y, x in product(range(height), range(width)):
         if matrix[y][x]:
             label = labels[(x, y)]
-            min_label = min([label, ] + list(label_equivalences.get(label, set())))
+            min_label = min(
+                [label, ] + list(label_equivalences.get(label, set())))
             labels[(x, y)] = min_label
 
-    # Print solution for debugging.
-    # for y, x in product(range(height), range(width)):
-    #     if matrix[y][x]:
-    #         matrix[y][x] = '{0:04d}'.format(labels[(x, y)])
-    #     else:
-    #         matrix[y][x] = '    '
-    # for y in range(height):
-    #     print(" ".join(matrix[y]))
+    regions = sorted([(x[0], tuple([y[0] for y in x[1]])) for x in groupby(
+        sorted(labels.items(), key=itemgetter(1)), key=itemgetter(1))])
+    return regions
 
-    return len(set(labels.values()))
 
-solution_1 = calculate_used_squares(data)
-solution_2 = calculate_n_regions(data)
+def solve_part_1(indata):
+    c = Counter(build_matrix(indata))
+    return c['1']
+
+
+def solve_part_2(indata):
+    matrix = [[bool(int(x)) for x in row] for row in
+              build_matrix(indata).splitlines()]
+    regions = connected_components(matrix)
+    return len(regions)
+
+
+solution_1 = solve_part_1(data)
+solution_2 = solve_part_2(data)
 
 print("Part 1: {0}".format(solution_1))
 print("Part 2: {0}".format(solution_2))
