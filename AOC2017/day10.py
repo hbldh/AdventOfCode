@@ -7,7 +7,7 @@ ensure_data(10)
 with open('input_10.txt', 'r') as f:
     data = f.read().strip()
 
-def knot_hash(lengths, size=256):
+def part_1(lengths, size=256):
     skip_size = 0
     position = 0
     d = deque(range(size))
@@ -21,22 +21,22 @@ def knot_hash(lengths, size=256):
     return list(d)
 
 
-def knot_hash_2(s, rounds=64):
+def knot_hash(s, size=256, rounds=64):
     skip_size = 0
     position = 0
     lengths = [ord(x) for x in s] + [17, 31, 73, 47, 23]
-    d = deque(range(255))
+    d = deque(range(size))
     for x in range(rounds):
         for l in lengths:
-            for v in [d.popleft() for x in range(l)]:
+            for v in [d.popleft() for _ in range(l)]:
                 d.appendleft(v)
             d.rotate(-(l + skip_size))
-            position = (position + l + skip_size) % len(d)
+            position = (position + l + skip_size) % size
             skip_size += 1
     d.rotate(position)
     sparse_hash = list(d)
     dense_hash = []
-    for block in [sparse_hash[x:x+16] for x in range(0, 256, 16)]:
+    for block in [sparse_hash[x:x+16] for x in range(0, size, 16)]:
         value = 0
         for y in block:
             value ^= y
@@ -45,10 +45,9 @@ def knot_hash_2(s, rounds=64):
 
 
 
-hash_1 = knot_hash(map(int, data.split(',')))
-#hash_1 = knot_hash([3,4,1,5], 5)
+hash_1 = part_1(map(int, data.split(',')))
 solution_1 = hash_1[0] * hash_1[1]
-hash_2 = knot_hash_2('1,2,3')
+hash_2 = knot_hash(data)
 solution_2 = hash_2
 
 print("Part 1: {0}".format(solution_1))
