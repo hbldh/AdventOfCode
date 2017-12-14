@@ -70,7 +70,6 @@ def solve_2(value):
                           matrix.get((x + 1, y - 1), 0) +
                           matrix.get((x + 1, y), 0) +
                           matrix.get((x + 1, y + 1), 0))
-        print(x, y, matrix[(x, y)])
         if matrix[(x, y)] > value:
             return matrix[(x, y)]
 
