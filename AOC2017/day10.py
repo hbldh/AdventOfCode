@@ -7,7 +7,7 @@ ensure_data(10)
 with open('input_10.txt', 'r') as f:
     data = f.read().strip()
 
-def part_1(lengths, size=256):
+def _part_1(lengths, size=256):
     skip_size = 0
     position = 0
     d = deque(range(size))
@@ -44,11 +44,25 @@ def knot_hash(s, size=256, rounds=64):
     return "".join(dense_hash)
 
 
+def solve_1(data):
+    hash_1 = _part_1(map(int, data.split(',')))
+    return hash_1[0] * hash_1[1]
 
-hash_1 = part_1(map(int, data.split(',')))
-solution_1 = hash_1[0] * hash_1[1]
-hash_2 = knot_hash(data)
-solution_2 = hash_2
 
-print("Part 1: {0}".format(solution_1))
-print("Part 2: {0}".format(solution_2))
+def solve_2(data):
+    return knot_hash(data)
+
+
+def main():
+    from AOC2017 import ensure_data
+
+    ensure_data(10)
+    with open('input_10.txt', 'r') as f:
+        data = f.read().strip()
+
+    print("Part 1: {0}".format(solve_1(data)))
+    print("Part 2: {0}".format(solve_2(data)))
+
+
+if __name__ == '__main__':
+    main()

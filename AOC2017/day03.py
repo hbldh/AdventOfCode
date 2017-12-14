@@ -1,9 +1,3 @@
-from AOC2017 import ensure_data
-
-ensure_data(3)
-with open('input_03.txt', 'r') as f:
-    data = f.read().strip()
-
 
 def layer_size_generator(max_val):
     x = 1
@@ -74,5 +68,16 @@ def solve_2(value):
             return matrix[(x, y)]
 
 
-print("Part 1: {0}".format(solve_1(int(data))))
-print("Part 2: {0}".format(solve_2(int(data))))
+def main():
+    from AOC2017 import ensure_data
+
+    ensure_data(3)
+    with open('input_03.txt', 'r') as f:
+        data = f.read().strip()
+
+    print("Part 1: {0}".format(solve_1(int(data))))
+    print("Part 2: {0}".format(solve_2(int(data))))
+
+
+if __name__ == '__main__':
+    main()

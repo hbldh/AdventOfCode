@@ -2,25 +2,30 @@
 # -*- coding: utf-8 -*-
 
 import os
-
-from AOC2017 import ensure_data
+import importlib
 
 
 def main(which_days):
     for day in which_days:
-        ensure_data(day)
-        print("Solutions to Day {0:02d}\n-------------------".format(day))
-        # Horrible way to run scripts, but wtf.
-        day_module = __import__('{0:02d}'.format(day))
-        print('')
+        try:
+            day_module = importlib.import_module(
+                'day{0:02d}'.format(day), 'AOC2017')
+            print("Solutions to Day {0:02d}\n-------------------".format(day))
+            day_module.main()
+            print('')
+        except:
+            print("Day {0:02d} failed to run!\n".format(day))
 
 
 if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser("Advent of Code AOC2017 - hbldh")
-    parser.add_argument('day', nargs='*', default=None, help="Run only specific day's problem")
-    parser.add_argument('--token', type=str, default=None, help="AoC session token. Needed to download data automatically.")
+    parser.add_argument(
+        'day', nargs='*', default=None, help="Run only specific day's problem")
+    parser.add_argument(
+        '--token', type=str, default=None,
+        help="AoC session token. Needed to download data automatically.")
     args = parser.parse_args()
 
     if args.token:
@@ -29,6 +34,6 @@ if __name__ == "__main__":
     if args.day:
         days = map(int, args.day)
     else:
-        days = range(1, 3)
+        days = range(1, 26)
 
     main(days)

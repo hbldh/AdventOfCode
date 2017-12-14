@@ -1,11 +1,5 @@
 from itertools import combinations, permutations
 
-from AOC2017 import ensure_data
-
-ensure_data(4)
-with open('input_04.txt', 'r') as f:
-    data = f.read().strip()
-
 
 def is_valid_1(s):
     tokens = s.split()
@@ -32,5 +26,17 @@ def solve_1(value):
 def solve_2(value):
     return sum([is_valid_2(s) for s in value.splitlines()])
 
-print("Part 1: {0}".format(solve_1(data)))
-print("Part 2: {0}".format(solve_2(data)))
+
+def main():
+    from AOC2017 import ensure_data
+
+    ensure_data(4)
+    with open('input_04.txt', 'r') as f:
+        data = f.read().strip()
+
+    print("Part 1: {0}".format(solve_1(data)))
+    print("Part 2: {0}".format(solve_2(data)))
+
+
+if __name__ == '__main__':
+    main()
