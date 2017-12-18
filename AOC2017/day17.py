@@ -1,5 +1,6 @@
 from collections import deque
 
+
 def _solve(distance, n_moments, sought_value):
     q = deque([0])
     for i in range(1, n_moments):
