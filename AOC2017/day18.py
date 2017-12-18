@@ -29,10 +29,8 @@ class Program(object):
             return True
         return False
 
-    def __iter__(self):
-        r = self.run()
-        while True:
-            next(r)
+    def __getitem__(self, item):
+        return int(item) if is_value(item) else self.registers[item]
 
     def run(self):
         n = 0
@@ -40,22 +38,18 @@ class Program(object):
             parts = self.instructions[n].split(' ')
             if parts[0] == 'snd':
                 self.n_sent += 1
-                value = int(parts[1]) if is_value(parts[1]) else self.registers[parts[1]]
+                value = self[parts[1]]
                 self.last_played_freq = value
                 if self.duet_bind:
                     self.duet_bind.received.appendleft(value)
             elif parts[0] == 'set':
-                self.registers[parts[1]] = int(parts[2]) if is_value(parts[2]) \
-                    else self.registers[parts[2]]
+                self.registers[parts[1]] = self[parts[2]]
             elif parts[0] == 'add':
-                self.registers[parts[1]] += int(parts[2]) if is_value(parts[2]) \
-                    else self.registers[parts[2]]
+                self.registers[parts[1]] += self[parts[2]]
             elif parts[0] == 'mul':
-                self.registers[parts[1]] *= int(parts[2]) if is_value(parts[2]) \
-                    else self.registers[parts[2]]
+                self.registers[parts[1]] *= self[parts[2]]
             elif parts[0] == 'mod':
-                self.registers[parts[1]] %= int(parts[2]) if is_value(parts[2]) \
-                    else self.registers[parts[2]]
+                self.registers[parts[1]] %= self[parts[2]]
             elif parts[0] == 'rcv':
                 if self.duet_bind:
                     if self.received:
@@ -73,11 +67,9 @@ class Program(object):
                     if self.registers[parts[1]] != 0:
                         yield self.last_played_freq
             elif parts[0] == 'jgz':
-                condition = int(parts[1]) if is_value(parts[1]) else self.registers[
-                    parts[1]]
+                condition = self[parts[1]]
                 if condition > 0:
-                    n += int(parts[2]) if is_value(parts[2]) else self.registers[
-                    parts[2]]
+                    n += self[parts[2]]
                     continue
             else:
                 raise ValueError(str(parts))
