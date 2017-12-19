@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 def solve_1(data):
     return sum([int(i) for i, j in zip(data, data[1:] + data[0]) if i == j])
 

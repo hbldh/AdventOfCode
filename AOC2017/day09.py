@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 def _remove_excl(data):
     out = []
     skip_one = False

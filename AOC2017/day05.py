@@ -1,10 +1,5 @@
-from itertools import combinations, permutations
-
-from AOC2017 import ensure_data
-
-ensure_data(5)
-with open('input_05.txt', 'r') as f:
-    data = f.read().strip().splitlines()
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 
 def solve(instructions, part_2=False):

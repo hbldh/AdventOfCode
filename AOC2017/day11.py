@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 move_map = {
     'n': lambda x,y: (x, y + 2),
     's': lambda x,y: (x, y - 2),
@@ -6,6 +9,7 @@ move_map = {
     'sw': lambda x,y: (x - 1, y - 1),
     'se': lambda x,y: (x + 1, y - 1),
 }
+
 
 def d(x, y):
     if abs(y) > abs(x):

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from itertools import product, groupby
 from operator import itemgetter
 from collections import Counter, defaultdict

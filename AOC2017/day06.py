@@ -1,5 +1,5 @@
-def _argmax(m):
-    return m.index(max(m))
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 
 def _solve(mem, part_2=False):
@@ -9,7 +9,7 @@ def _solve(mem, part_2=False):
     L = len(mem)
     n = 0
     while True:
-        i = _argmax(mem)
+        i = mem.index(max(mem))
         to_distribute = mem[i]
         mem[i] = 0
         for k in range(to_distribute):

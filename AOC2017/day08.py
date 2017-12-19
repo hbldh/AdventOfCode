@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import re
 from collections import defaultdict
 
@@ -5,13 +8,11 @@ part_one_re = re.compile('^([\w]+)\s([\w]+)\s([-\d]+)')
 part_two_re = re.compile('\s([\w]+)\s([<>!=]+)\s([-\d]+)$')
 
 
-
 def _solve(indata):
     max_val = 0
     registers = defaultdict(lambda: 0)
     for instruction in indata:
         reg, mod, val = part_one_re.search(instruction).groups()
-        ifreg, ifcond, ifval = part_two_re.search(instruction).groups()
         if eval('registers["{0}"] {1} {2}'.format(*part_two_re.search(instruction).groups())):
             registers[reg] += int(val) if mod == 'inc' else -int(val)
         if registers[reg] > max_val:

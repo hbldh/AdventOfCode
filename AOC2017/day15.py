@@ -1,5 +1,5 @@
-import re
-from collections import defaultdict
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 
 def generator_1(x, factor):

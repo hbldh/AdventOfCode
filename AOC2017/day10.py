@@ -1,11 +1,8 @@
-import itertools
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from collections import deque
 
-from AOC2017 import ensure_data
-
-ensure_data(10)
-with open('input_10.txt', 'r') as f:
-    data = f.read().strip()
 
 def _part_1(lengths, size=256):
     skip_size = 0
