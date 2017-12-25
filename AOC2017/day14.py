@@ -5,7 +5,7 @@ from itertools import product, groupby
 from operator import itemgetter
 from collections import Counter, defaultdict
 
-from AOC2017.day10 import knot_hash
+from day10 import knot_hash
 
 
 def build_matrix(indata):
@@ -72,7 +72,7 @@ def solve_2(indata):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(14)
     with open('input_14.txt', 'r') as f:

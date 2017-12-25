@@ -29,7 +29,7 @@ def solve_2(indata):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(8)
     with open('input_08.txt', 'r') as f:

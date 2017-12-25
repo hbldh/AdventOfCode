@@ -36,10 +36,6 @@ def solve_1(data):
     return n_mul, registers
 
 
-
-
-
-
 def solve_2(data):
 
     instructions = data.splitlines()
@@ -85,7 +81,7 @@ def solve_2(data):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(23)
     with open('input_23.txt', 'r') as f:

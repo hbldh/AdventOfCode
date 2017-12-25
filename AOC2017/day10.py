@@ -51,7 +51,7 @@ def solve_2(data):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(10)
     with open('input_10.txt', 'r') as f:

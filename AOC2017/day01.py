@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 def solve_1(data):
     return sum([int(i) for i, j in zip(data, data[1:] + data[0]) if i == j])
+
 
 def solve_2(data):
     return sum([int(i) for i, j in zip(data, data[len(data)//2:] +
@@ -10,7 +12,7 @@ def solve_2(data):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(1)
     with open('input_01.txt', 'r') as f:

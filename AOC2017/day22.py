@@ -91,7 +91,7 @@ def solve_2(data, N=10000000):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(22)
     with open('input_22.txt', 'r') as f:

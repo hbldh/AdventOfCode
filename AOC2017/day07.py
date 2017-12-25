@@ -68,7 +68,7 @@ def solve_2(indata):
 
 
 def main():
-    from AOC2017 import ensure_data
+    from _aocutils import ensure_data
 
     ensure_data(7)
     with open('input_07.txt', 'r') as f:
