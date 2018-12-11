@@ -1,3 +1,4 @@
+import os
 import re
 from collections import defaultdict
 from itertools import chain
@@ -21,8 +22,11 @@ def solve(data):
 def main():
     from AOC2018 import ensure_data
 
-    ensure_data(3)
-    with open('input_03.txt', 'r') as f:
+    day = __file__.split(os.sep)[-1].strip('day').strip('.py')
+
+    ensure_data(int(day))
+
+    with open(f'input_{day}.txt', 'r') as f:
         data = f.read().strip()
 
     part_1, part_2 = solve(data)
