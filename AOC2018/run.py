@@ -3,7 +3,7 @@
 
 import os
 import importlib
-
+from AOC2018 import run_solver
 
 def main(which_days):
     for day in which_days:
@@ -15,7 +15,7 @@ def main(which_days):
 
         try:
             print("Solutions to Day {0:02d}\n-------------------".format(day))
-            day_module.main()
+            run_solver(day_module.solve, 'day{0:02d}'.format(day))
             print('')
         except:
             print("Day {0:02d} failed to run!\n".format(day))

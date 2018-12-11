@@ -1,4 +1,3 @@
-import os
 from collections import Counter
 import difflib
 
@@ -11,7 +10,7 @@ def _checksum(r):
 def _solve_1(rows):
 
     d = [_checksum(row) for row in rows]
-    return sum([x[0] for x in d]) * sum([x[1] for x in d]),
+    return sum([x[0] for x in d]) * sum([x[1] for x in d])
 
 
 def _solve_2(rows):
@@ -28,21 +27,6 @@ def solve(data):
     return _solve_1(rows), _solve_2(rows)
 
 
-def main():
-    from AOC2018 import ensure_data
-
-    day = __file__.split(os.sep)[-1].strip('day').strip('.py')
-
-    ensure_data(int(day))
-
-    with open(f'input_{day}.txt', 'r') as f:
-        data = f.read().strip()
-
-    part_1, part_2 = solve(data)
-
-    print("Part 1: {0}".format(part_1))
-    print("Part 2: {0}".format(part_2))
-
-
 if __name__ == '__main__':
-    main()
+    from AOC2018 import run_solver
+    run_solver(solve, __file__)

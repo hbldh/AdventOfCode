@@ -1,4 +1,3 @@
-import os
 import re
 from collections import defaultdict
 from itertools import chain
@@ -19,21 +18,6 @@ def solve(data):
     return sum([sum([len(x) > 1 for x in row.values()]) for row in d.values()]), no_overlap_ID
 
 
-def main():
-    from AOC2018 import ensure_data
-
-    day = __file__.split(os.sep)[-1].strip('day').strip('.py')
-
-    ensure_data(int(day))
-
-    with open(f'input_{day}.txt', 'r') as f:
-        data = f.read().strip()
-
-    part_1, part_2 = solve(data)
-
-    print("Part 1: {0}".format(part_1))
-    print("Part 2: {0}".format(part_2))
-
-
 if __name__ == '__main__':
-    main()
+    from AOC2018 import run_solver
+    run_solver(solve, __file__)
