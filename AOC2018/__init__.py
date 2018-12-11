@@ -25,7 +25,7 @@ def load_data(day):
 
 
 def run_solver(f, file):
-    day = int(file.split(os.sep)[-1].strip('day').strip('.py'))
+    day = int(file.split('/')[-1].strip('day').strip('.py'))
     ensure_data(day)
     data = load_data(day)
 
