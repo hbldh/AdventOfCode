@@ -3,22 +3,20 @@
 
 import os
 import importlib
-from AOC2020 import run_solver
+from AOC2020.python import run_solver
 
 
 def main(which_days):
     for day in which_days:
         try:
-            day_module = importlib.import_module("day{0:02d}".format(day), "AOC2020")
+            day_module = importlib.import_module("day{0:02d}".format(day), "AOC2020.python")
         except:
             continue
 
-        try:
-            print("Solutions to Day {0:02d}\n-------------------".format(day))
-            run_solver(day_module.solve, "day{0:02d}".format(day))
-            print("")
-        except:
-            print("Day {0:02d} failed to run!\n".format(day))
+        print("Solutions to Day {0:02d}\n-------------------".format(day))
+        run_solver(day_module.solve, "day{0:02d}".format(day))
+        print("")
+
 
 
 if __name__ == "__main__":

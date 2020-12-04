@@ -1,6 +1,6 @@
-# Advent of Code 2018
+# Advent of Code 2020
 
-Solutions for [Advent of Code 2018](https://adventofcode.com/2020), written in Python.
+Solutions for [Advent of Code 2020](https://adventofcode.com/2020), written in Python.
 
 To run problem solvers, run the `run.py` script in the Python interpreter:
 
