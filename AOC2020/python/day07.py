@@ -1,14 +1,25 @@
 def solve(data):
     rules = {}
     for row in data.splitlines():
-        identifier, contents = row.split(' bags contain ')
+        identifier, contents = row.split(" bags contain ")
         if contents.strip() != "no other bags.":
-            _c = tuple((int(c[0]), c[1]) for c in (c.strip().strip('.').strip('bags').strip('bag').strip().split(' ', 1) for c in contents.split(',')))
+            _c = tuple(
+                (int(c[0]), c[1])
+                for c in (
+                    c.strip()
+                    .strip(".")
+                    .strip("bags")
+                    .strip("bag")
+                    .strip()
+                    .split(" ", 1)
+                    for c in contents.split(",")
+                )
+            )
             rules[identifier] = _c
         else:
             rules[identifier] = ()
 
-    return solve_part_1(rules, 'shiny gold'), solve_part_2(rules, 'shiny gold')
+    return solve_part_1(rules, "shiny gold"), solve_part_2(rules, "shiny gold")
 
 
 def contains(rule, rules, sought):
