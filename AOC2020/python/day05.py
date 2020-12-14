@@ -39,7 +39,7 @@ def solve_part_2(boarding_cards):
     )
     seat_ids = [rc[0] * 8 + rc[1] for rc in all_seats]
     delta = set(range(seat_ids[0], seat_ids[-1] + 1)).difference(seat_ids)
-    return delta[0]
+    return delta.pop()
 
 
 if __name__ == "__main__":
