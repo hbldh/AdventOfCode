@@ -56,7 +56,7 @@ def solve(data):
             instructions.append(row.strip("mask = "))
         else:
             instructions.append(
-                list(map(int, re.search("mem\[(\d*)\] = (\d*)", row).groups()))
+                list(map(int, re.search("mem\\[(\\d*)\\] = (\\d*)", row).groups()))
             )
 
     return solve_part_1(instructions), solve_part_2(instructions)
