@@ -1,5 +1,3 @@
-
-
 def solve_part_1(rules, nearby_tickets):
     all_valid_values = set()
     for values in rules.values():
@@ -42,14 +40,17 @@ def solve_part_2(rules, my_ticket, nearby_tickets):
             for rule, rule_range in rule_ranges.items():
                 if rule in known_rules:
                     continue
-                if len(field_values[i].difference(rule_range)) == 0 and rule not in known_rules:
+                if (
+                    len(field_values[i].difference(rule_range)) == 0
+                    and rule not in known_rules
+                ):
                     possible_fields[i].append(rule)
             if len(possible_fields[i]) == 1:
                 known_rules[possible_fields[i][0]] = i
 
     departure_values = []
     for rule in known_rules:
-        if rule.startswith('departure'):
+        if rule.startswith("departure"):
             departure_values.append(my_ticket[known_rules[rule]])
 
     d = departure_values[0]
@@ -60,20 +61,23 @@ def solve_part_2(rules, my_ticket, nearby_tickets):
 
 
 def solve(data):
-    raw_rules, tickets = data.split('your ticket:')
+    raw_rules, tickets = data.split("your ticket:")
     rules = {}
     for row in raw_rules.strip().splitlines():
-        field_name, field_values = row.split(':')
-        values = [tuple(map(int, r.split('-'))) for r in field_values.split(' or ')]
+        field_name, field_values = row.split(":")
+        values = [tuple(map(int, r.split("-"))) for r in field_values.split(" or ")]
         rules[field_name.strip()] = values
 
     def parse_ticket(t):
-        return tuple(map(int, t.strip().split(',')))
-    my_ticket, nearby_tickets = tickets.split('nearby tickets:')
+        return tuple(map(int, t.strip().split(",")))
+
+    my_ticket, nearby_tickets = tickets.split("nearby tickets:")
     my_ticket = parse_ticket(my_ticket)
 
     nearby_tickets = [parse_ticket(t) for t in nearby_tickets.strip().splitlines()]
-    return solve_part_1(rules, nearby_tickets), solve_part_2(rules, my_ticket, nearby_tickets)
+    return solve_part_1(rules, nearby_tickets), solve_part_2(
+        rules, my_ticket, nearby_tickets
+    )
 
 
 if __name__ == "__main__":
