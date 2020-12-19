@@ -26,3 +26,23 @@ $ python run.py --token 53616c[...]
 
 The token can be found as a cookie pertaining to the Advent of Code website 
 in your web browser.
+
+
+## Summary of days
+
+### Day 16
+
+Fun! Rules and validation. Requires simple sudoku solving for matching fields to value sets.
+
+### Day 17
+
+Conway's Game of Life in 3 and 4 dimensions. Brute force solutions.
+
+### Day 18
+
+Operator precedence. Solved by recursive methods, building a state machine. 
+
+### Day 19
+
+Regex training. Recursive regex for part 2. Horribly ugly solution.
+
