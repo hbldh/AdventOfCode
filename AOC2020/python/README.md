@@ -46,3 +46,7 @@ Operator precedence. Solved by recursive methods, building a state machine.
 
 Regex training. Recursive regex for part 2. Horribly ugly solution.
 
+
+### Day 21
+
+Another set intersection and difference task.
