@@ -50,3 +50,7 @@ Regex training. Recursive regex for part 2. Horribly ugly solution.
 ### Day 21
 
 Another set intersection and difference task.
+
+### Day 22
+
+Recursive number games. Required recursion reduction through some checks. 

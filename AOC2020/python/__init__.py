@@ -1,4 +1,5 @@
 import os
+import time
 from urllib.request import build_opener
 
 root_dir = os.path.dirname(os.path.abspath(__file__))
@@ -30,7 +31,9 @@ def run_solver(f, file):
     ensure_data(day)
     data = load_data(day)
 
+    t = time.time()
     part_1, part_2 = f(data)
 
+    print(f"Solution time: {time.time() - t:.4f} seconds")
     print("Part 1: {0}".format(part_1))
     print("Part 2: {0}".format(part_2))
