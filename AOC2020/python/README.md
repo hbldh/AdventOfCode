@@ -47,10 +47,19 @@ Operator precedence. Solved by recursive methods, building a state machine.
 Regex training. Recursive regex for part 2. Horribly ugly solution.
 
 
+### Day 20
+
+Matching 
+
 ### Day 21
 
 Another set intersection and difference task.
 
 ### Day 22
 
-Recursive number games. Required recursion reduction through some checks. 
+Recursive number games. Required recursion reduction through some checks.
+
+### Day 23
+
+Horrible. Using lists. Terrible performance. Takes ~12 days to calculate part 2...
+Should use a better data structure or find a pattern. Couldn't be bothered...  
