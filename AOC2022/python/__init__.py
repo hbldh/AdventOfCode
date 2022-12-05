@@ -22,7 +22,7 @@ def ensure_data(day):
 def load_data(day):
     day_input_file = os.path.join(root_dir, f"input_{day:02d}.txt")
     with open(day_input_file, "r") as f:
-        data = f.read().strip()
+        data = f.read().rstrip()
     return data
 
 
