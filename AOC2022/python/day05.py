@@ -1,4 +1,4 @@
-from queue import LifoQueue, Empty
+from queue import LifoQueue
 import textwrap
 
 
