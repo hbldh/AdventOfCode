@@ -7,23 +7,13 @@ MOVES = {
     "D": (1, 0)
 }
 
-TEST_DATA = """R 5
-U 8
-L 8
-D 3
-R 17
-D 10
-L 25
-U 20"""
-
 
 def solve(data):
-    #data = TEST_DATA
     moves = [x.split(' ') for x in data.splitlines()]
     return solve_part_1(moves), solve_part_2(moves)
 
 
-def pos_diff(x,y):
+def pos_diff(x, y):
     return x[0] - y[0], x[1] - y[1]
 
 
@@ -58,7 +48,29 @@ def solve_part_1(moves):
 
 
 def solve_part_2(moves):
-    ...
+    visited = set()
+    positions = [(0, 0),] + [(0,0), ] * 9
+    visited.add(positions[-1])
+    for move in moves:
+        for _ in range(int(move[1])):
+            positions[0] = pos_add(positions[0], MOVES[move[0]])
+            for pos_idx, __ in enumerate(range(len(positions) - 1), start=1):
+                delta = pos_diff(positions[pos_idx - 1], positions[pos_idx])
+                if abs(delta[0]) <= 1 and abs(delta[1]) <= 1:
+                    continue
+                else:
+                    # Need to move T_pos
+                    if all(delta):
+                        # It is a diagonal move.
+                        positions[pos_idx] = pos_add(positions[pos_idx], (int(copysign(1, delta[0])), int(copysign(1, delta[1]))))
+                    else:
+                        # It is a straight move.
+                        if delta[0]:
+                            positions[pos_idx] = pos_add(positions[pos_idx], (int(copysign(1, delta[0])), 0))
+                        else:
+                            positions[pos_idx] = pos_add(positions[pos_idx], (0, int(copysign(1, delta[1]))))
+            visited.add(positions[-1])
+    return len(visited)
 
 
 if __name__ == "__main__":
